@@ -2,7 +2,7 @@
 
 Multi-tenant, modular WMS for 3PLs and in-house warehouses. .NET 10, Clean Architecture per module, PostgreSQL with row-level security.
 
-Design documents live in the claude.ai project "Warehouse Management SaaS - Agile Build" (BRD, PRD, functional spec, backlog, HLD, LLD, infrastructure, sprint plans).
+Design documents are in `docs/` (BRD, PRD, functional spec, backlog, HLD, LLD, infrastructure, sprint plan, decision log). `CLAUDE.md` tells AI assistants how to work in this repo.
 
 ## Repository layout
 
@@ -30,10 +30,19 @@ Module rules (enforced by `tests/Wms.ArchitectureTests`):
 
 Prerequisites: .NET 10 SDK, Docker.
 
+One command (starts containers, migrates, runs the API with hot reload):
+
+```bash
+./scripts/dev.sh            # macOS / Linux / WSL
+.\scripts\dev.ps1           # Windows PowerShell
+```
+
+Or step by step:
+
 ```bash
 docker compose up -d                                   # PostgreSQL 17 + Valkey 8
 dotnet run --project src/Hosts/Wms.Host.Migrator       # apply SQL migrations as wms_owner
-dotnet run --project src/Hosts/Wms.Host.AppApi         # http://localhost:5080
+dotnet watch --project src/Hosts/Wms.Host.AppApi       # http://localhost:5080, reloads on save
 ```
 
 Check it:
