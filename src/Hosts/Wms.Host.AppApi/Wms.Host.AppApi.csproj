@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Wms.Infrastructure.Common\Wms.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\Wms.Web.Common\Wms.Web.Common.csproj" />
+    <ProjectReference Include="..\..\Modules\Platform\Wms.Platform.Endpoints\Wms.Platform.Endpoints.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+  </ItemGroup>
+</Project>

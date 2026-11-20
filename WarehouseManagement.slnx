@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Wms.Application.Abstractions/Wms.Application.Abstractions.csproj" />
+    <Project Path="src/BuildingBlocks/Wms.Infrastructure.Common/Wms.Infrastructure.Common.csproj" />
+    <Project Path="src/BuildingBlocks/Wms.SharedKernel/Wms.SharedKernel.csproj" />
+    <Project Path="src/BuildingBlocks/Wms.Web.Common/Wms.Web.Common.csproj" />
+  </Folder>
+  <Folder Name="/src/Hosts/">
+    <Project Path="src/Hosts/Wms.Host.AppApi/Wms.Host.AppApi.csproj" />
+    <Project Path="src/Hosts/Wms.Host.Migrator/Wms.Host.Migrator.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Platform/">
+    <Project Path="src/Modules/Platform/Wms.Platform.Application/Wms.Platform.Application.csproj" />
+    <Project Path="src/Modules/Platform/Wms.Platform.Contracts/Wms.Platform.Contracts.csproj" />
+    <Project Path="src/Modules/Platform/Wms.Platform.Domain/Wms.Platform.Domain.csproj" />
+    <Project Path="src/Modules/Platform/Wms.Platform.Endpoints/Wms.Platform.Endpoints.csproj" />
+    <Project Path="src/Modules/Platform/Wms.Platform.Infrastructure/Wms.Platform.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Wms.ArchitectureTests/Wms.ArchitectureTests.csproj" />
+    <Project Path="tests/Wms.SharedKernel.Tests/Wms.SharedKernel.Tests.csproj" />
+  </Folder>
+</Solution>

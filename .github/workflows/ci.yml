@@ -1,0 +1,78 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore
+        run: dotnet restore WarehouseManagement.slnx
+
+      - name: Build (warnings as errors)
+        run: dotnet build WarehouseManagement.slnx --no-restore -c Release
+
+      - name: Test (unit + architecture)
+        run: dotnet test WarehouseManagement.slnx --no-build -c Release --logger trx --results-directory TestResults
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: TestResults
+
+  migrations:
+    name: Migrations apply cleanly and are idempotent
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      WMS_MIGRATOR_CONNECTION: Host=localhost;Port=5432;Database=wms;Username=wms_owner;Password=wms_owner_dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Create roles and database
+        run: psql -v ON_ERROR_STOP=1 -f db/init/01-roles-and-database.sql
+
+      - name: Apply migrations
+        run: dotnet run --project src/Hosts/Wms.Host.Migrator -c Release
+
+      - name: Apply again (must be a no-op)
+        run: dotnet run --project src/Hosts/Wms.Host.Migrator -c Release --no-build | tee second-run.log && grep -q "Database is up to date." second-run.log

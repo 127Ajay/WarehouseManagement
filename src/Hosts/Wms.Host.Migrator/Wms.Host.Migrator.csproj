@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\Wms.Infrastructure.Common\Wms.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\..\Modules\Platform\Wms.Platform.Infrastructure\Wms.Platform.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

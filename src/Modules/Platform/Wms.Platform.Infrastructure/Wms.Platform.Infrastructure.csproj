@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Wms.Platform.Application\Wms.Platform.Application.csproj" />
+    <ProjectReference Include="..\Wms.Platform.Domain\Wms.Platform.Domain.csproj" />
+    <ProjectReference Include="..\Wms.Platform.Contracts\Wms.Platform.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Wms.Infrastructure.Common\Wms.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Wms.Application.Abstractions\Wms.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Wms.SharedKernel\Wms.SharedKernel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\*.sql" />
+  </ItemGroup>
+</Project>

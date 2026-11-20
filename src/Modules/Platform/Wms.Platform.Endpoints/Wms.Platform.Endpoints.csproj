@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wms.Platform.Application\Wms.Platform.Application.csproj" />
+    <ProjectReference Include="..\Wms.Platform.Contracts\Wms.Platform.Contracts.csproj" />
+    <!-- Composition only: the module's IModule registers its own infrastructure. -->
+    <ProjectReference Include="..\Wms.Platform.Infrastructure\Wms.Platform.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Wms.Web.Common\Wms.Web.Common.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Wms.Application.Abstractions\Wms.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Wms.SharedKernel\Wms.SharedKernel.csproj" />
+  </ItemGroup>
+</Project>
